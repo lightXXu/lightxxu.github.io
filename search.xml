@@ -18,6 +18,7 @@
         <tag>foo</tag>
         <tag>bar</tag>
         <tag>baz</tag>
+        <tag>ssh</tag>
       </tags>
   </entry>
 </search>
