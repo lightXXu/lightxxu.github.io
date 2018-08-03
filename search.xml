@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[JAVA之反射]]></title>
-    <url>%2F2018%2F07%2F29%2FJAVA%E4%B9%8B%E5%8F%8D%E5%B0%84%2F</url>
-    <content type="text"></content>
+    <title><![CDATA[centos安装python]]></title>
+    <url>%2F2018%2F08%2F03%2Fcentos%E5%AE%89%E8%A3%85python%2F</url>
+    <content type="text"><![CDATA[学习一下 python,记录一次在 centos 虚拟机上的安装经历 环境：centos7(Virtual Box) python版本：3.7 centos7 默认会自带 python2，首先查看一下 安装的 python 版本以及位置 1234# python -V# which python/usr/bin/python 进入 bin 目录，查看 python 文件 123456# cd /usr/bin# ls -al python* lrwxrwxrwx. 1 root root 7 Dec 20 2016 python -&gt; python2lrwxrwxrwx. 1 root root 9 Dec 20 2016 python2 -&gt; python2.7-rwxr-xr-x. 1 root root 7136 Nov 6 2016 python2.7 ls -al 参数表示显示所有隐藏文件和目录，并显示所有详细信息 从结果中看到，可执行文件 python 指向 python2 ,python2 又指向 python2.7 ，即 python 默认指向 python2.7 我们先备份 python2.7 123# mv python pyhton.bak# ls python2 python2.7 pyhton.bak 回到 src 目录，通过 wget 下载，外国服务器很慢，需耐心等待 123# cd /usr/local/src # wget https://www.python.org/ftp/python/3.7.0/Python-3.7.0.tgz# tar -zxvf Python-3.7.0.tgz tar -zxvf 解压到当前目录 执行安装 123# cd Python-3.7.0# ./configure --prefix=/usr/local/python/python3# make &amp;&amp; make altinstall 执行 ./configure 可以创建一个文件 creating Makefile,下面的 make 命令需要用到，执行 make install 便可以安装到指定的目录 –prefix 参数 代表安装的路径，不配的话，可执行文件默认放置到 /usr/local/bin，库文件默认放到 /usr/local/lib，配置文件默认放在 /usr/local/etc ,其他的资源放在 /usr/local/share 安装到一起方便以后的移植和卸载 然后执行 make 、make install 命令，安装完成 我这里使用的是 make altinstall，防止 /usr/bin/目录中出现两个不同版本的 python 接下来需要将默认的共享库加载路径指向 libpython3.7.so所在的目录 123# vim /etc/ld.so.conf//在最后一行添加 "/usr/local/python/python3/lib"# ldconfig 将 python3.7 连接到 /usr/local/bin 1# ln -s /usr/local/python/python3/bin/python3.7 /usr/bin/python python3 到此已经安装完毕 可以确认安装结果 12# python -VPython 3.7.0 还有一件事，这个阶段 yum 一般会出问题 ，修改 /usr/bin/yum 以及 /usr/libexec/urlgrabber-ext-down 两个文件的头，将 #!/usr/bin/python 改成 #!/usr/bin/python2 此时 yum 恢复正常]]></content>
+      <tags>
+        <tag>python</tag>
+        <tag>centos</tag>
+      </tags>
   </entry>
   <entry>
     <title><![CDATA[Hello World]]></title>
